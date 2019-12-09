@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af394a118d502784283d91c0f282d2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
+  blueLayer:
     serializedVersion: 2
     m_Bits: 1024
 --- !u!54 &6155882537036908367
@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 563637597537360871}
   - component: {fileID: 563637597537360870}
   - component: {fileID: 4016722060436080736}
+  - component: {fileID: 1332171112030056236}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -224,12 +225,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563637597537360868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 134f48b58baea2d41a4e279a81f251c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLauncher: {fileID: 3315016756625381263}
+  hand: 0
+--- !u!114 &1332171112030056236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563637597537360868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134f48b58baea2d41a4e279a81f251c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletLauncher: {fileID: 0}
+  hand: 0
 --- !u!1 &563637598631322654
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,8 +255,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 563637598631322655}
+  - component: {fileID: 3925041453607036262}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,6 +281,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3925041453607036262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563637598631322654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6027cf6d1e2425e826d5a10a91e7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 0
+  edge: {fileID: 563637597152783033}
+  gun: {fileID: 563637597537360868}
+  catcher: {fileID: 1022330586829520162}
 --- !u!1 &563637598705531974
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70c7b47f73116d4d854e168763b32b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pose: {fileID: 0}
+  hand: 0
+  contactInteractables: []
 --- !u!1 &6036086634223955877
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +539,7 @@ GameObject:
   - component: {fileID: 2585637684631542731}
   - component: {fileID: 3315016756625381263}
   - component: {fileID: 1797069420451804171}
+  - component: {fileID: 2682247317025651415}
   m_Layer: 0
   m_Name: BulletLauncher
   m_TagString: Untagged
@@ -4170,7 +4207,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 1024
+      m_Bits: 512
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -5131,7 +5168,7 @@ ParticleSystem:
 --- !u!199 &1797069420451804171
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -5190,3 +5227,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2682247317025651415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036086634223955877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fd654eda714094f99e43fd9e4f98e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletLauncher: {fileID: 0}

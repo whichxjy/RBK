@@ -58,6 +58,14 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/Switch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Jump",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

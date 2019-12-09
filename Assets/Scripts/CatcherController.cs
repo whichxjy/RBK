@@ -1,107 +1,87 @@
 ﻿using UnityEngine;
 using Valve.VR;
+using System.Collections.Generic;
 
 public class CatcherController : MonoBehaviour {
+    public SteamVR_Behaviour_Pose pose;
     private SteamVR_Action_Boolean catchAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Catch");
-
-    private SteamVR_Input_Sources leftHand = SteamVR_Input_Sources.LeftHand;
-    private SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
-
-    private GameObject catchedObj;
+    public SteamVR_Input_Sources hand;
 
     private FixedJoint fixedJoint;
+    private Interactable currentInteractable = null;
+    public List<Interactable> contactInteractables = new List<Interactable>();
 
-    private Rigidbody rigidBody;
-
-    private bool throwing;
-    private Rigidbody throwingRigidBody;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        catchedObj = null;
+    private void Awake() {
         fixedJoint = GetComponent<FixedJoint>();
-
-        throwing = true;
-
-        rigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (catchAction[leftHand].stateDown)
-        {
-            Debug.Log(1);
-            PickUpObj();
+    private void Update() {
+        if (catchAction[hand].stateDown) {
+            PickUp();
         }
-        if (catchAction[rightHand].stateDown)
-        {
-            Debug.Log(1);
-            PickUpObj();
-        }
-
-
-        if (catchAction[leftHand].stateUp)
-        {
-            Debug.Log(1);
-            DropObj();
-        }
-        if (catchAction[rightHand].stateUp)
-        {
-            Debug.Log(1);
-            DropObj();
+        if (catchAction[hand].stateUp) {
+            Drop();
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (throwing)
-        {
-           throwingRigidBody.velocity = rigidBody.velocity;
-            throwingRigidBody.angularVelocity = rigidBody.angularVelocity * 0.25f;
-
-            //throwingRigidBody.maxAngularVelocity = rigidBody.angularVelocity.magnitude;
-
-           throwing = false;
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("BlackBlock")) {
+            contactInteractables.Add(other.gameObject.GetComponent<Interactable>());
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        catchedObj = other.gameObject;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        catchedObj = null;
-    }
-
-    void PickUpObj()
-    {
-        if (catchedObj == null)
-        {
-            fixedJoint.connectedBody = null;
-
-            throwing = false;
-
-            throwingRigidBody = null;
-        }
-        else
-        {
-            fixedJoint.connectedBody = catchedObj.GetComponent<Rigidbody>();
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("BlackBlock")) {
+            contactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
         }
     }
 
-    void DropObj()
-    {
-        if (fixedJoint.connectedBody != null)
-        {
-            throwingRigidBody = fixedJoint.connectedBody;
-
-            fixedJoint.connectedBody = null;
-
-            throwing = true;
+    private void PickUp() {
+        currentInteractable = GetNearestInteractable();
+        if (!currentInteractable) {
+            return;
         }
+
+        if (currentInteractable.catcherController) {
+            currentInteractable.catcherController.Drop();
+        }
+
+        currentInteractable.transform.position = transform.position;
+
+        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+        fixedJoint.connectedBody = targetBody;
+
+        currentInteractable.catcherController = this;
+    }
+
+    private void Drop() {
+        if (!currentInteractable) {
+            return;
+        }
+
+        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
+        targetBody.velocity = pose.GetVelocity();
+        targetBody.angularVelocity = pose.GetAngularVelocity();
+
+        fixedJoint.connectedBody = null;
+
+        currentInteractable.catcherController = null;
+        currentInteractable = null;
+    }
+
+    private Interactable GetNearestInteractable() {
+        Interactable nearest = null;
+        float minDistance = float.MaxValue;
+
+        foreach (Interactable interactable in contactInteractables) {
+            float distance = (interactable.transform.position - transform.position).sqrMagnitude;
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearest = interactable;
+            }
+        }
+
+        return nearest;
     }
 }
