@@ -16,7 +16,17 @@ public class EnemyMovementController : MonoBehaviour {
 
         if (distance <= lookRadius) {
             agent.SetDestination(target.position);
+
+            if (distance <= agent.stoppingDistance) {
+                FaceTarget();
+            }
         }
+    }
+
+    private void FaceTarget() {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 5 * Time.deltaTime);
     }
 
     private void OnDrawGizmos() {
