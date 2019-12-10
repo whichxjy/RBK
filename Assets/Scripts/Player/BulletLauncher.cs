@@ -12,7 +12,7 @@ public class BulletLauncher : MonoBehaviour {
     private void OnParticleCollision(GameObject other) {
         ParticlePhysicsExtensions.GetCollisionEvents(bulletLauncher, other, collisionEvents);
         foreach (ParticleCollisionEvent collisionEvent in collisionEvents) {
-            collisionEvent.colliderComponent.gameObject.transform.parent.gameObject.GetComponent<EnemyStateController>().die();
+            collisionEvent.colliderComponent.gameObject.transform.parent.gameObject.GetComponent<EnemyState>().die();
         }
     }
 }

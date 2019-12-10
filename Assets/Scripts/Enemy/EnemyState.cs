@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class EnemyStateController : MonoBehaviour {
+public class EnemyState : MonoBehaviour {
     public GameObject initBlock;
     public GameObject endBlock;
 
@@ -11,6 +11,7 @@ public class EnemyStateController : MonoBehaviour {
     }
 
     public void die() {
+        endBlock.transform.position = initBlock.transform.position;
         initBlock.SetActive(false);
         endBlock.SetActive(true);
     }

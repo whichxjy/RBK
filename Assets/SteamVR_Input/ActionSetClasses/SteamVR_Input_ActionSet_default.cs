@@ -129,11 +129,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Jump
+        public virtual SteamVR_Action_Vector2 Move
         {
             get
             {
-                return SteamVR_Actions.default_Jump;
+                return SteamVR_Actions.default_Move;
             }
         }
         
