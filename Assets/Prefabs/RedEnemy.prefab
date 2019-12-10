@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initBlock: {fileID: 4550438026153894987}
-  blackBlock: {fileID: 8590271462531140081}
+  endBlock: {fileID: 8590271462531140081}
 --- !u!1001 &6798477755392866787
 PrefabInstance:
   m_ObjectHideFlags: 0

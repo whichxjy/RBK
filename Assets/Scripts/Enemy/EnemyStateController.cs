@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class EnemyStateController : MonoBehaviour {
     public GameObject initBlock;
-    public GameObject blackBlock;
+    public GameObject endBlock;
 
     private void Start() {
         initBlock.SetActive(true);
-        blackBlock.SetActive(false);
+        endBlock.SetActive(false);
     }
 
     public void die() {
         initBlock.SetActive(false);
-        blackBlock.SetActive(true);
+        endBlock.SetActive(true);
     }
 }
