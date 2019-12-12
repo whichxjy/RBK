@@ -3,13 +3,13 @@ using UnityEngine;
 using Valve.VR;
 
 public class PlayerMovement : MonoBehaviour {
-    private float sensitivity = 0.1f;
-    private float maxSpeed = 1.0f;
+    private readonly float sensitivity = 0.1f;
+    private readonly float maxSpeed = 1.0f;
 
-    public SteamVR_Action_Boolean movePressAction = null;
-    public SteamVR_Action_Vector2 moveValueAction = null;
+    public SteamVR_Action_Boolean movePressAction;
+    public SteamVR_Action_Vector2 moveValueAction;
 
-    private float speed = 0.0f;
+    private float speed;
 
     private CharacterController characterController;
     private Transform vrCamera;

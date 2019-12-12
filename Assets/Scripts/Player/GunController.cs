@@ -6,11 +6,11 @@ public class GunController : MonoBehaviour {
     private SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Shoot");
     public SteamVR_Input_Sources hand;
 
-    void Start() {
+    private void Start() {
         bulletLauncher = GetComponentInChildren<ParticleSystem>();
     }
 
-    void Update() {
+    private void Update() {
         if (shootAction[hand].stateDown) {
             bulletLauncher.Emit(1);
         }

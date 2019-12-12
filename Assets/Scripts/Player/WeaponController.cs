@@ -16,25 +16,25 @@ public class WeaponController : MonoBehaviour {
         currentState = WeaponState.Sword;
     }
 
-    void Update() {
+    private void Update() {
         if (switchAction[hand].stateDown) {
             if (currentState == WeaponState.Sword) {
-                switchToCatcherState();
+                SwitchToCatcherState();
             }
             else {
-                switchToSwordState();
+                SwitchToSwordState();
             }
         }
     }
 
-    private void switchToSwordState() {
+    private void SwitchToSwordState() {
         currentState = WeaponState.Sword;
         edge.SetActive(true);
         gun.SetActive(true);
         catcher.SetActive(false);
     }
 
-    private void switchToCatcherState() {
+    private void SwitchToCatcherState() {
         currentState = WeaponState.Catcher;
         edge.SetActive(false);
         gun.SetActive(false);

@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour {
-    private float lookRadius = 20f;
+    private readonly float lookRadius = 20f;
     private Transform target;
     private NavMeshAgent agent;
 

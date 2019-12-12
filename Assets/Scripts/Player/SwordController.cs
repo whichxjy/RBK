@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 
 public class SwordController : MonoBehaviour {
-    public LayerMask blueLayer;
-
-    void Update() {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1, blueLayer)) {
-            hit.transform.parent.gameObject.GetComponent<EnemyState>().die();
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Blue")) {
+            collision.collider.gameObject.transform.parent.gameObject.GetComponent<EnemyState>().Die();
         }
     }
 }

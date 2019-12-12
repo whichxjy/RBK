@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyState : MonoBehaviour {
     public GameObject initBlock;
@@ -10,7 +9,7 @@ public class EnemyState : MonoBehaviour {
         endBlock.SetActive(false);
     }
 
-    public void die() {
+    public void Die() {
         endBlock.transform.position = initBlock.transform.position;
         initBlock.SetActive(false);
         endBlock.SetActive(true);
