@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class CatcherController : MonoBehaviour {
     public SteamVR_Behaviour_Pose pose;
-    private SteamVR_Action_Boolean catchAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Catch");
+    private readonly SteamVR_Action_Boolean catchAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Catch");
     public SteamVR_Input_Sources hand;
 
     private FixedJoint fixedJoint;
-    private Interactable currentInteractable = null;
+    private Interactable currentInteractable;
     public List<Interactable> contactInteractables = new List<Interactable>();
 
     private void Awake() {

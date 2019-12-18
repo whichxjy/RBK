@@ -3,7 +3,7 @@ using Valve.VR;
 
 public class GunController : MonoBehaviour {
     public ParticleSystem bulletLauncher;
-    private SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Shoot");
+    private readonly SteamVR_Action_Boolean shootAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("default", "Shoot");
     public SteamVR_Input_Sources hand;
 
     private void Start() {
