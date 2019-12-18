@@ -4,7 +4,7 @@ RBK is a VR game with three colors (red, blue, and black).
 
 ![demo-1](demo/demo-1.jpg)
 
-![demo-2](demo/demo-2.jpg)
+![demo-2](demo/demo-2.JPG)
 
 ## Inspirations
 
