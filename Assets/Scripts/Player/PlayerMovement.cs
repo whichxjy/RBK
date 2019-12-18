@@ -68,10 +68,8 @@ public class PlayerMovement : MonoBehaviour {
         if (movePressAction.state) {
             speed += moveValueAction.axis.y * sensitivity;
             speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
-            movement = orientation * (speed * Vector3.forward) * Time.deltaTime;
+            movement += orientation * (speed * Vector3.forward) * Time.deltaTime;
         }
-
-        movement = -movement;
 
         characterController.Move(movement);
     }
